@@ -59,7 +59,7 @@ $background-tone4: #d0c6a3;
 
   .square {
     @extend .object;
-    z-index: 3;
+    z-index: 4;
   }
 
   .background {
@@ -79,6 +79,29 @@ $background-tone4: #d0c6a3;
       position: absolute;
       background: $color-black;
       border-radius: 40%;
+    }
+  }
+
+  .skyscraper {
+    @extend .object;
+    display: flex;
+    z-index: 3;
+    flex-direction: column;
+
+    .row {
+      flex: 2;
+      display: flex;
+
+      &__slim {
+        flex: 1;
+      }
+      .cell {
+        flex: 1;
+
+        &__filled {
+          border: 1px solid black;
+        }
+      }
     }
   }
 }

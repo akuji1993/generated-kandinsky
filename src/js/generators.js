@@ -7,11 +7,8 @@ import {
 
 import {
   colorBlack,
-  mainColors,
-  redTones,
-  blueTones,
-  greenTones,
-  yellowTones,
+  colorWhite,
+  paletteTones,
   backgroundTones,
   allColors
 } from './colors';
@@ -125,4 +122,64 @@ export const generateTriangles = (picture) => {
     triangle.appendChild(secondLine);
     picture.appendChild(triangle);
   }
+}
+
+export const generateChessSkyscraper = (picture) => {
+  const skyscraper = document.createElement('div');
+  skyscraper.style.left = getRandomPosition(20, 30);
+  skyscraper.style.top = getRandomPosition(20, 50);
+  skyscraper.style.width = getRandomPosition(10, 20);
+  skyscraper.style.height = getRandomPosition(40, 60);
+  skyscraper.style.transform = `rotateZ(${getRandomNumber(35, 55)}deg)`;
+  skyscraper.setAttribute('class', 'skyscraper');
+
+  let filledArray = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+    [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  ]
+
+  const getRandomColor = () => {
+    const randomNumber = getRandomNumber(0, 100);
+    if (randomNumber < 30) {
+      return colorWhite;
+    } else if (randomNumber < 60) {
+      return colorBlack;
+    } else {
+      return paletteTones[getRandomNumber(0, allColors.length - 1)];
+    }
+  }
+
+  for (let x = 0; x <= 11; x++) {
+    const skyRow = document.createElement('div');
+    skyRow.setAttribute('class', 'row');
+    if (x === 11) {
+      skyRow.className += ' row__slim';
+    }
+    for (let y = 0; y <= 9; y++) {
+      const skyCell = document.createElement('div');
+      skyCell.setAttribute('class', 'cell');
+      if (filledArray[x][y] === 1) {
+        skyCell.className += ' cell__filled';
+        if (x === 11) {
+          skyCell.style.backgroundColor = colorBlack;
+        } else {
+          skyCell.style.backgroundColor = getRandomColor();
+        }
+      }
+      skyRow.appendChild(skyCell);
+    }
+    skyscraper.appendChild(skyRow);
+  }
+
+  picture.appendChild(skyscraper);
 }

@@ -6,6 +6,7 @@ export const colorBrightgreen = '#9cb58d';
 export const colorOrange = '#e79972';
 export const colorYellow = '#e1af32';
 export const colorPurple = '#644263';
+export const colorWhite = '#EFE6DD';
 
 export const colorToneRed = '#db3712';
 export const colorToneRed2 = '#fa5b1a';
@@ -70,3 +71,4 @@ export const backgroundTones = [
 ]
 
 export const allColors = [...mainColors, ...redTones, ...blueTones, ...greenTones, ...yellowTones];
+export const paletteTones = [...blueTones, ...greenTones, ...yellowTones];

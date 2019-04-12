@@ -1,7 +1,7 @@
 import './index.scss';
 
 import {
-  generateCircles, generateBackground, generateTriangles, generateSquares
+  generateCircles, generateBackground, generateTriangles, generateSquares, generateChessSkyscraper
 } from './js/generators';
 
 window.onload = () => {
@@ -16,5 +16,6 @@ const main = () => {
   generateCircles(picture);
   generateSquares(picture);
   generateTriangles(picture);
+  generateChessSkyscraper(picture);
 }
 
