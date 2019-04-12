@@ -1,0 +1,84 @@
+$color-black: #111119;
+$color-red: #d0514b;
+$color-blue: #29607f;
+$color-dark-green: #44896a;
+$color-bright-green: #9cb58d;
+$color-orange: #e79972;
+$color-yellow: #e1af32;
+
+$color-tone-red: #db3712;
+$color-tone-red2: #fa5b1a;
+$color-tone-red3: #a92010;
+
+$color-tone-blue: #2c527f;
+$color-tone-blue2: #69889d;
+$color-tone-blue3: #4c8599;
+
+$color-tone-green: #385752;
+$color-tone-green2: #467146;
+$color-tone-green3: #aac05e;
+
+$color-tone-yellow: #d5c264;
+$color-tone-yellow2: #dda729;
+$color-tone-yellow3: #ce8c00;
+
+$gradient-red-blue: linear-gradient($color-red, $color-blue);
+$gradient-blue-dark-green: linear-gradient($color-blue, $color-dark-green);
+$gradient-green: linear-gradient($color-dark-green, $color-bright-green);
+$gradient-green-orange: linear-gradient($color-bright-green, $color-orange);
+$gradient-orange-yellow: linear-gradient($color-orange, $color-yellow);
+
+$background-tone: #f5e0b5;
+$background-tone2: #e3d9b6;
+$background-tone3: #dce4d9;
+$background-tone4: #d0c6a3;
+
+.kandinsky-main {
+  display: flex;
+  width: 800px;
+  height: 600px;
+  position: relative;
+  border: 2px solid goldenrod;
+  overflow: hidden;
+
+  .object {
+    position: absolute;
+  }
+
+  .circle {
+    @extend .object;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+
+    .backgroundCircle {
+      z-index: 2;
+    }
+  }
+
+  .square {
+    @extend .object;
+    z-index: 3;
+  }
+
+  .background {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .triangle {
+    @extend .object;
+    z-index: 4;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .line {
+      position: absolute;
+      background: $color-black;
+      border-radius: 40%;
+    }
+  }
+}

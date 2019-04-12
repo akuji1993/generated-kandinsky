@@ -1,0 +1,14 @@
+.kandinsky-main {
+  display: flex;
+  width: 800px;
+  height: 600px;
+  position: relative; }
+  .kandinsky-main .object, .kandinsky-main .circle {
+    position: absolute; }
+  .kandinsky-main .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; }
+    .kandinsky-main .circle .backgroundCircle {
+      z-index: 1; }
