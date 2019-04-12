@@ -10,6 +10,7 @@ import {
   colorWhite,
   paletteTones,
   backgroundTones,
+  redTones,
   allColors
 } from './colors';
 
@@ -99,7 +100,7 @@ export const generateTriangles = (picture) => {
   for (let i = 0; i < times; i++) {
     const triangle = document.createElement('div');
     triangle.setAttribute('class', 'triangle');
-    triangle.style.left = getRandomPosition(5, 60);
+    triangle.style.left = getRandomPosition(30, 60);
     triangle.style.top = getRandomPosition(0, 30);
 
     const lineWidth = getRandomFloat(0.3, 0.8) * picture.clientHeight;
@@ -155,7 +156,7 @@ export const generateChessSkyscraper = (picture) => {
     } else if (randomNumber < 60) {
       return colorBlack;
     } else {
-      return paletteTones[getRandomNumber(0, allColors.length - 1)];
+      return paletteTones[getRandomNumber(0, paletteTones.length - 1)];
     }
   }
 
@@ -182,4 +183,82 @@ export const generateChessSkyscraper = (picture) => {
   }
 
   picture.appendChild(skyscraper);
+}
+
+export const generateLines = (picture) => {
+  const times = getRandomNumber(6, 8);
+  const lineContainer = document.createElement('div');
+  lineContainer.setAttribute('class', 'line-container');
+
+  // Do the lines going to a point
+  for (let i = 0; i < times; i++) {
+    const line = document.createElement('div');
+    line.setAttribute('class', 'line');
+    if (i < (times / 2)) {
+      line.style.left = getRandomPosition(5, 35);
+      line.style.top = getRandomPosition(10, 90);
+      line.style.transform = `rotateZ(-${getRandomNumber(20, 40)}deg)`;
+    } else {
+      line.style.left = getRandomPosition(45, 75);
+      line.style.top = getRandomPosition(10, 90);
+      line.style.transform = `rotateZ(${getRandomNumber(20, 40)}deg)`;
+    }
+
+    line.style.width = getRandomPosition(10, 30);
+    line.style.height = `${getRandomNumber(1, 5)}px`;
+
+    lineContainer.appendChild(line);
+  }
+
+  // Do some straight lines
+  for (let i = 0; i < (times / 3); i++) {
+    const line = document.createElement('div');
+    line.setAttribute('class', 'line');
+    line.style.left = getRandomPosition(5, 35);
+    line.style.top = getRandomPosition(10, 90);
+    line.style.width = getRandomPosition(30, 70);
+    line.style.height = '1px';
+    lineContainer.appendChild(line);
+  }
+
+  picture.appendChild(lineContainer);
+}
+
+export const generateChessSquare = (picture) => {
+  const chessSquare = document.createElement('div');
+  chessSquare.setAttribute('class', 'chess-square');
+  chessSquare.style.left = getRandomPosition(70, 90);
+  chessSquare.style.top = getRandomPosition(10, 90);
+  const size = `${getRandomNumber(64, 84)}px`;
+  chessSquare.style.width = size;
+  chessSquare.style.height = size;
+
+  const getRandomColor = () => {
+    const randomNumber = getRandomNumber(0, 100);
+    if (randomNumber < 50) {
+      return colorWhite;
+    } else {
+      return redTones[getRandomNumber(0, redTones.length - 1)];
+    }
+  }
+
+  for (let i = 0; i < 4; i++) {
+    const chessRow = document.createElement('div');
+    chessRow.setAttribute('class', 'row');
+
+    for (let j = 0; j < 4; j++) {
+      const chessCell = document.createElement('div');
+      chessCell.setAttribute('class', 'cell');
+      if ((i === 1 || i === 2) && (j === 1 || j === 2)) {
+        chessCell.style.backgroundColor = getRandomColor();
+      } else {
+        chessCell.style.backgroundColor = 'transparent';
+      }
+      chessRow.appendChild(chessCell);
+    }
+
+    chessSquare.appendChild(chessRow);
+  }
+
+  picture.appendChild(chessSquare);
 }
