@@ -262,3 +262,51 @@ export const generateChessSquare = (picture) => {
 
   picture.appendChild(chessSquare);
 }
+
+export const generateHalfCircle = (picture) => {
+  const circleContainer = document.createElement('div');
+  circleContainer.setAttribute('class', 'half-circle-container');
+  circleContainer.style.left = getRandomPosition(35, 65);
+  circleContainer.style.top = getRandomPosition(55, 75);
+
+  // Create middle half circles
+  const times = getRandomNumber(3, 5);
+  const size = getRandomNumber(40, 60);
+  for (let i = 0; i < times; i++) {
+    const halfCircle = document.createElement('div');
+    halfCircle.setAttribute('class', 'half-circle');
+    halfCircle.style.width = `${size}px`;
+    halfCircle.style.height = `${size / 2}px`;
+    halfCircle.style.borderColor = allColors[getRandomNumber(0, allColors.length - 1)];
+    halfCircle.style.backgroundColor = colorWhite;
+
+    circleContainer.appendChild(halfCircle);
+  }
+
+  const halfCircleLine = document.createElement('div');
+  halfCircleLine.setAttribute('class', 'line');
+  circleContainer.appendChild(halfCircleLine);
+
+  // Create right side circles
+  const circleContainer2 = document.createElement('div');
+  circleContainer2.setAttribute('class', 'half-circle-container');
+  circleContainer2.style.left = getRandomPosition(60, 80);
+  circleContainer2.style.top = getRandomPosition(20, 50);
+  circleContainer2.style.transform = `rotateZ(-${getRandomNumber(30, 60)}deg)`;
+
+  const times2 = getRandomNumber(3, 5);
+  const size2 = getRandomNumber(40, 60);
+  for (let i = 0; i < times2; i++) {
+    const halfCircle2 = document.createElement('div');
+    halfCircle2.setAttribute('class', 'half-circle');
+    halfCircle2.className += ' half-circle__top-only';
+    halfCircle2.style.width = `${size2}px`;
+    halfCircle2.style.height = `${size2 / 2}px`;
+    halfCircle2.style.borderColor = allColors[getRandomNumber(0, allColors.length - 1)];
+
+    circleContainer2.appendChild(halfCircle2);
+  }
+
+  picture.appendChild(circleContainer);
+  picture.appendChild(circleContainer2);
+}

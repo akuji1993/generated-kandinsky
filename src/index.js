@@ -7,7 +7,8 @@ import {
   generateSquares,
   generateChessSkyscraper,
   generateLines,
-  generateChessSquare
+  generateChessSquare,
+  generateHalfCircle
 } from './js/generators';
 
 window.onload = () => {
@@ -25,5 +26,6 @@ const main = () => {
   generateLines(picture);
   generateChessSkyscraper(picture);
   generateChessSquare(picture);
+  generateHalfCircle(picture);
 }
 
